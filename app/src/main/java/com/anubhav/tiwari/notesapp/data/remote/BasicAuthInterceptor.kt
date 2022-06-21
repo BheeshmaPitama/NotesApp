@@ -1,6 +1,6 @@
 package com.anubhav.tiwari.notesapp.data.remote
 
-import com.anubhav.tiwari.notesapp.constants.Constants.IGNORE_AUTH_URL
+import com.anubhav.tiwari.notesapp.utils.Constants.IGNORE_AUTH_URL
 import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.Response

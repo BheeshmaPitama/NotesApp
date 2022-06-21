@@ -5,9 +5,9 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.anubhav.tiwari.notesapp.constants.Constants.BASE_URL
-import com.anubhav.tiwari.notesapp.constants.Constants.DATABASE_NAME
-import com.anubhav.tiwari.notesapp.constants.Constants.ENCRYPTED_SHARED_PREF_NAME
+import com.anubhav.tiwari.notesapp.utils.Constants.BASE_URL
+import com.anubhav.tiwari.notesapp.utils.Constants.DATABASE_NAME
+import com.anubhav.tiwari.notesapp.utils.Constants.ENCRYPTED_SHARED_PREF_NAME
 import com.anubhav.tiwari.notesapp.data.local.NotesDatabase
 import com.anubhav.tiwari.notesapp.data.remote.BasicAuthInterceptor
 import com.anubhav.tiwari.notesapp.data.remote.NoteApi
@@ -19,7 +19,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module

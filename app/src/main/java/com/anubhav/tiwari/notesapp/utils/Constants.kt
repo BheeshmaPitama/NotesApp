@@ -1,4 +1,4 @@
-package com.anubhav.tiwari.notesapp.constants
+package com.anubhav.tiwari.notesapp.utils
 
 object Constants {
     val IGNORE_AUTH_URL = listOf("/login","/register")
