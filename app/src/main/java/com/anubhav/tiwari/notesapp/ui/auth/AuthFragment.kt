@@ -14,6 +14,8 @@ import com.anubhav.tiwari.notesapp.data.remote.BasicAuthInterceptor
 import com.anubhav.tiwari.notesapp.ui.BaseFragment
 import com.anubhav.tiwari.notesapp.utils.Constants.KEY_LOGGED_IN_EMAIL
 import com.anubhav.tiwari.notesapp.utils.Constants.KEY_PASSWORD
+import com.anubhav.tiwari.notesapp.utils.Constants.NO_EMAIL
+import com.anubhav.tiwari.notesapp.utils.Constants.NO_PASSWORD
 import com.anubhav.tiwari.notesapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_auth.*
@@ -35,8 +37,10 @@ class AuthFragment:BaseFragment(R.layout.fragment_auth) {
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btnLogin.setOnClickListener {
-            findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToNotesFragment())
+        super.onViewCreated(view, savedInstanceState)
+        if(isLoggedIn()){
+            redirectLogin()
+        }
 
             requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             subscribeToObservers()
@@ -55,7 +59,7 @@ class AuthFragment:BaseFragment(R.layout.fragment_auth) {
                 currentPassword = password
                 viewModel.login(email,password)
             }
-        }
+
     }
 
     private fun authenticateAPI(email:String,password:String){
@@ -69,6 +73,12 @@ class AuthFragment:BaseFragment(R.layout.fragment_auth) {
             AuthFragmentDirections.actionAuthFragmentToNotesFragment(),
             navOption
         )
+    }
+
+    private fun isLoggedIn() : Boolean{
+        currentEmail = sharedPreferences.getString(KEY_LOGGED_IN_EMAIL, NO_EMAIL)?: NO_EMAIL
+        currentPassword = sharedPreferences.getString(KEY_PASSWORD, NO_PASSWORD)?: NO_PASSWORD
+        return currentEmail!= NO_EMAIL && currentPassword!= NO_PASSWORD
     }
 
     private fun subscribeToObservers(){
